@@ -1,0 +1,22 @@
+{
+  "name": "gold-iban-input",
+  "description": "Material Design IBAN Input Element derived from gold-cc-input",
+  "main": "gold-iban-input.html",
+  "version": "0.0.1",
+  "license": "MIT",
+  "keywords": [
+    "web-components",
+    "webcomponents"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "install": "polymer install",
+    "start": "polymer serve",
+    "test": "polymer test"
+  },
+  "devDependencies": {
+    "polymer-cli": "^0.18"
+  }
+}
