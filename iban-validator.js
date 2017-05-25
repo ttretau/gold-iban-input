@@ -42,8 +42,7 @@ var IBANValidator = (function () {
 
         normalize = function(inputString) {
             var input = inputString.replace(/[ -]/g, '');
-            var result = String(input).toUpperCase().replace(/[^A-Z0-9]/g, '');
-            return result;
+            return String(input).toUpperCase().replace(/[^A-Z0-9]/g, '');
         };
 
         validate_number = (function (_this) {
