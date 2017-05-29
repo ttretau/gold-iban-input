@@ -1,9 +1,12 @@
 # \<gold-iban-input\>
 
-Material Design IBAN Input Element
+Material Design <a href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">IBAN</a> Input Element:
+Single-line text field with Material Design styling
+for entering a IBAN. As the user types, the number will be formatted by adding a space every 4 digits and remaining digits.
 
-## Descripton
+```html
+<gold-iban-input label="IBAN"></gold-iban-input>
+```
 
-```
-init 0
-```
+## Validation
+The input is validated via country based length and checksum.
