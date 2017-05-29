@@ -70,7 +70,7 @@ var IBANValidator = (function () {
         })(this);
 
         return validate(inputString);
-    };
+    }
 
     return {
         validate: validateIBAN

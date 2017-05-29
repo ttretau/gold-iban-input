@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -9,44 +9,83 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
+    <script src="../../iron-test-helpers/test-helpers.js"></script>
+    <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
     <link rel="import" href="../gold-iban-input.html">
-  </head>
-  <body>
+</head>
+<body>
 
-    <test-fixture id="BasicTestFixture">
-      <template>
+<test-fixture id="BasicTestFixture">
+    <template>
         <gold-iban-input></gold-iban-input>
-      </template>
-    </test-fixture>
+    </template>
+</test-fixture>
 
-    <test-fixture id="ChangedPropertyTestFixture">
-      <template>
-        <gold-iban-input prop1="new-prop1"></gold-iban-input>
-      </template>
-    </test-fixture>
+<test-fixture id="ChangedPropertyTestFixture">
+    <template>
+        <gold-iban-input label="new-prop1"></gold-iban-input>
+    </template>
+</test-fixture>
 
-    <script>
-      suite('gold-iban-input', function() {
+<test-fixture id="ErrorWithoutAutoValidate">
+    <template>
+        <gold-iban-input required error-message="error"></gold-iban-input>
+    </template>
+</test-fixture>
 
-        test('instantiating the element with default properties works', function() {
-          var element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'gold-iban-input');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello gold-iban-input!');
+<test-fixture id="required">
+    <template>
+        <gold-iban-input auto-validate required error-message="error"></gold-iban-input>
+    </template>
+</test-fixture>
+
+<script>
+    suite('gold-iban-input', function () {
+
+        test('instantiating the element with default properties works', function () {
+            var element = fixture('BasicTestFixture');
+            assert.equal(element.label, 'IBAN');
         });
 
-        test('setting a property on the element works', function() {
-          // Create a test fixture
-          var element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+        test('setting a property on the element works', function () {
+            // Create a test fixture
+            var element = fixture('ChangedPropertyTestFixture');
+            assert.equal(element.label, 'new-prop1');
         });
 
-      });
-    </script>
+        test('invalid input is not ok', function (done) {
+            var input = fixture('required');
+            Polymer.Base.async(function () {
+                input.value = '1234';
+                forceXIfStamp(input);
 
-  </body>
+                var container = Polymer.dom(input.root).querySelector('paper-input-container');
+                assert.ok(container, 'paper-input-container exists');
+                assert.isTrue(container.invalid);
+
+                var error = Polymer.dom(input.root).querySelector('paper-input-error');
+                assert.ok(error, 'paper-input-error exists');
+                assert.notEqual(getComputedStyle(error).visibility, 'hidden', 'error is not visibility:hidden');
+                done();
+            }, 1);
+        });
+
+        test('valid input is ok', function(done) {
+            var input = fixture('required');
+            Polymer.Base.async(function() {
+                input.value='DE12500105170648489890';
+                forceXIfStamp(input);
+
+                var container = Polymer.dom(input.root).querySelector('paper-input-container');
+                assert.ok(container, 'paper-input-container exists');
+                assert.isFalse(container.invalid);
+                done();
+            }, 1);
+        });
+
+    });
+</script>
+
+</body>
 </html>
