@@ -6,7 +6,8 @@
   "license": "MIT",
   "keywords": [
     "web-components",
-    "webcomponents"
+    "webcomponents",
+    "iban"
   ],
   "directories": {
     "test": "test"
