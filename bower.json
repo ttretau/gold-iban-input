@@ -3,7 +3,7 @@
   "description": "Material Design IBAN Input Element derived from gold-cc-input",
   "main": "gold-iban-input.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0"
+    "polymer": "Polymer/polymer#1.9 - 2"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
