@@ -15,6 +15,13 @@ for entering a IBAN. As the user types, the number will be formatted by adding a
 ## Validation
 The input is validated via country based length and checksum.
 
+The input can be automatically validated as the user is typing by using
+the `auto-validate` and `required` attributes. For manual validation, the
+element also has a `validate()` method, which returns the validity of the
+input as well sets any appropriate error messages and styles.
+
+See `Polymer.PaperInputBehavior` for more API docs.
+
 ### Styling
 
 See `Polymer.PaperInputContainer` for a list of custom properties used to
