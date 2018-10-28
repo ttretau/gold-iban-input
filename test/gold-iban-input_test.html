@@ -1,18 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
     <title>gold-iban-input test</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
-    <script src="../../iron-test-helpers/test-helpers.js"></script>
-    <script src="../../iron-test-helpers/mock-interactions.js"></script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-    <link rel="import" href="../gold-iban-input.html">
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
 </head>
 <body>
 
@@ -40,51 +38,58 @@
     </template>
 </test-fixture>
 
-<script>
-    suite('gold-iban-input', function () {
+<script type="module">
+  import '@polymer/iron-test-helpers/test-helpers.js';
+  import '@polymer/iron-test-helpers/mock-interactions.js';
+  import '../gold-iban-input.js';
 
-        test('instantiating the element with default properties works', function () {
-            var element = fixture('BasicTestFixture');
-            assert.equal(element.label, 'IBAN');
-        });
+  import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+  import {Base} from '@polymer/polymer/polymer-legacy.js';
 
-        test('setting a property on the element works', function () {
-            // Create a test fixture
-            var element = fixture('ChangedPropertyTestFixture');
-            assert.equal(element.label, 'new-prop1');
-        });
+  suite('gold-iban-input', function () {
 
-        test('invalid input is not ok', function (done) {
-            var input = fixture('required');
-            Polymer.Base.async(function () {
-                input.value = '1234';
-                forceXIfStamp(input);
-
-                var container = Polymer.dom(input.root).querySelector('paper-input-container');
-                assert.ok(container, 'paper-input-container exists');
-                assert.isTrue(container.invalid);
-
-                var error = Polymer.dom(input.root).querySelector('paper-input-error');
-                assert.ok(error, 'paper-input-error exists');
-                assert.notEqual(getComputedStyle(error).visibility, 'hidden', 'error is not visibility:hidden');
-                done();
-            }, 1);
-        });
-
-        test('valid input is ok', function(done) {
-            var input = fixture('required');
-            Polymer.Base.async(function() {
-                input.value='DE12500105170648489890';
-                forceXIfStamp(input);
-
-                var container = Polymer.dom(input.root).querySelector('paper-input-container');
-                assert.ok(container, 'paper-input-container exists');
-                assert.isFalse(container.invalid);
-                done();
-            }, 1);
-        });
-
+    test('instantiating the element with default properties works', function () {
+      var element = fixture('BasicTestFixture');
+      assert.equal(element.label, 'IBAN');
     });
+
+    test('setting a property on the element works', function () {
+      // Create a test fixture
+      var element = fixture('ChangedPropertyTestFixture');
+      assert.equal(element.label, 'new-prop1');
+    });
+
+    test('valid input is ok', function (done) {
+      var input = fixture('required');
+      Base.async(function () {
+        input.value = 'DE12500105170648489890';
+        forceXIfStamp(input);
+
+        var container = dom(input.root).querySelector('paper-input-container');
+        assert.ok(container, 'paper-input-container exists');
+        assert.isFalse(container.invalid);
+        done();
+      }, 1);
+    });
+
+    test('invalid input is not ok', function (done) {
+      var input = fixture('required');
+      Base.async(function () {
+        input.value = '1234';
+        forceXIfStamp(input);
+
+        var container = dom(input.root).querySelector('paper-input-container');
+        assert.ok(container, 'paper-input-container exists');
+        assert.isTrue(container.invalid);
+
+        var error = dom(input.root).querySelector('paper-input-error');
+        assert.ok(error, 'paper-input-error exists');
+        assert.notEqual(getComputedStyle(error).visibility, 'hidden', 'error is not visibility:hidden');
+        done();
+      }, 1);
+    });
+
+  });
 </script>
 
 </body>

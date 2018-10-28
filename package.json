@@ -1,23 +1,34 @@
 {
-  "name": "gold-iban-input",
   "description": "Material Design IBAN Input Element derived from gold-cc-input",
-  "main": "gold-iban-input.html",
-  "version": "0.0.1",
-  "license": "MIT",
   "keywords": [
     "web-components",
     "webcomponents",
     "iban"
   ],
-  "directories": {
-    "test": "test"
-  },
+  "name": "gold-iban-input",
+  "main": "gold-iban-input.js",
+  "version": "3.0.0",
+  "license": "BSD-3-Clause",
   "scripts": {
-    "install": "polymer install",
-    "start": "polymer serve",
-    "test": "polymer test"
+    "format": "webmat",
+    "generate-types": "gen-typescript-declarations --deleteExisting --outDir . --verify",
+    "prepare": "npm run generate-types"
   },
   "devDependencies": {
-    "polymer-cli": "^0.18"
+    "@polymer/test-fixture": "^4.0.1",
+    "wct-browser-legacy": "^1.0.1",
+    "webmat": "^0.2.2",
+    "polymer-cli": "^0.18",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "@polymer/gen-typescript-declarations": "^1.5.1",
+    "@polymer/iron-test-helpers": "^3.0.0-pre.26"
+  },
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "@polymer/iron-flex-layout": "^3.0.1",
+    "@polymer/iron-form-element-behavior": "^3.0.1",
+    "@polymer/iron-input": "^3.0.1",
+    "@polymer/paper-input": "^3.0.1",
+    "@polymer/paper-styles": "^3.0.1"
   }
 }
