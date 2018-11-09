@@ -8,16 +8,23 @@
  *   gold-iban-input.js
  */
 
+import {IronFormElementBehavior} from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
+
+import {PaperInputBehavior} from '@polymer/paper-input/paper-input-behavior.js';
+
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
 import {LegacyElementMixin} from '@polymer/polymer/lib/legacy/legacy-element-mixin.js';
 
-interface GoldIbanInputElement extends PaperInputBehavior, IronValidatableBehavior, IronFormElementBehavior, LegacyElementMixin, HTMLElement {
+interface GoldIbanInputElement extends PaperInputBehavior, IronFormElementBehavior, LegacyElementMixin, HTMLElement {
 
   /**
    * The label for this input.
    */
   label: string|null|undefined;
   value: string|null|undefined;
-  importMeta: any;
 
   /**
    * Returns a reference to the focusable element. Overridden from PaperInputBehavior
@@ -25,15 +32,8 @@ interface GoldIbanInputElement extends PaperInputBehavior, IronValidatableBehavi
    *    
    */
   readonly _focusableElement: any;
+  importMeta: any;
   ready(): void;
-  beforeRegister(): void;
-  _beforeRegister(): void;
-  _onIronInputReady(): void;
-
-  /**
-   * A handler that is called on input
-   */
-  _onValueChanged(value: any, oldValue: any): void;
 
   /**
    * Returns true if the element has a valid value, and sets the visual
@@ -42,6 +42,11 @@ interface GoldIbanInputElement extends PaperInputBehavior, IronValidatableBehavi
    * @returns Whether the input is currently valid or not.
    */
   validate(): boolean;
+
+  /**
+   * A handler that is called on input
+   */
+  _onValueChanged(value: any, oldValue: any): void;
 
   /**
    * Overidden from Polymer.IronControlState.

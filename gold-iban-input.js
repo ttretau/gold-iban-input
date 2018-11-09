@@ -87,22 +87,24 @@ const IBANValidator = (function () {
     validate: validateIBAN
   };
 })(window);
-
+/**
+ @demo demo/index.html
+ */
 Polymer({
   _template: html`
     <style>
       :host {
         display: block;
       }
-    
+
       .container {
         @apply --layout-horizontal;
       }
-    
+
       input {
         @apply --layout-flex;
       }
-    
+
       input {
         position: relative; /* to make a stacking context */
         outline: none;
@@ -135,7 +137,7 @@ Polymer({
       }
     </style>
     <paper-input-container id="container" disabled\$="[[disabled]]" no-label-float="[[noLabelFloat]]" always-float-label="[[_computeAlwaysFloatLabel(alwaysFloatLabel,placeholder)]]" invalid="[[invalid]]">
-    
+
       <label slot="label" hidden\$="[[!label]]">[[label]]</label>
 
       <iron-input id="input" slot="input" bind-value="{{value}}" allowed-pattern="[a-zA-Z0-9 ]" invalid="{{invalid}}">
@@ -153,14 +155,14 @@ Polymer({
                maxlength\$="[[_requiredLength]]"
                size\$="[[size]]">
       </iron-input>
-        
+
       <template is="dom-if" if="[[errorMessage]]">
         <paper-input-error slot="add-on" id="error">
           [[errorMessage]]
         </paper-input-error>
       </template>
-    
-    </paper-input-container>        
+
+    </paper-input-container>
     `,
 
   is: 'gold-iban-input',

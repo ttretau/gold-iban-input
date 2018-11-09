@@ -15,13 +15,12 @@
     "prepare": "npm run generate-types"
   },
   "devDependencies": {
+    "webmat": "^0.2.2",
+    "@polymer/iron-test-helpers": "^3.0.1",
     "@polymer/test-fixture": "^4.0.1",
     "wct-browser-legacy": "^1.0.1",
-    "webmat": "^0.2.2",
-    "polymer-cli": "^0.18",
     "@webcomponents/webcomponentsjs": "^2.0.0",
-    "@polymer/gen-typescript-declarations": "^1.5.1",
-    "@polymer/iron-test-helpers": "^3.0.0-pre.26"
+    "@polymer/gen-typescript-declarations": "^1.5.1"
   },
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
