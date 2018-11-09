@@ -46,22 +46,21 @@
   import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
   import {Base} from '@polymer/polymer/polymer-legacy.js';
 
-  suite('gold-iban-input', function () {
-
-    test('instantiating the element with default properties works', function () {
+  suite('gold-iban-input', function() {
+    test('instantiating the element with default properties works', function() {
       var element = fixture('BasicTestFixture');
       assert.equal(element.label, 'IBAN');
     });
 
-    test('setting a property on the element works', function () {
+    test('setting a property on the element works', function() {
       // Create a test fixture
       var element = fixture('ChangedPropertyTestFixture');
       assert.equal(element.label, 'new-prop1');
     });
 
-    test('valid input is ok', function (done) {
+    test('valid input is ok', function(done) {
       var input = fixture('required');
-      Base.async(function () {
+      Base.async(function() {
         input.value = 'DE12500105170648489890';
         forceXIfStamp(input);
 
@@ -72,9 +71,9 @@
       }, 1);
     });
 
-    test('invalid input is not ok', function (done) {
+    test('invalid input is not ok', function(done) {
       var input = fixture('required');
-      Base.async(function () {
+      Base.async(function() {
         input.value = '1234';
         forceXIfStamp(input);
 
@@ -84,11 +83,13 @@
 
         var error = dom(input.root).querySelector('paper-input-error');
         assert.ok(error, 'paper-input-error exists');
-        assert.notEqual(getComputedStyle(error).visibility, 'hidden', 'error is not visibility:hidden');
+        assert.notEqual(
+            getComputedStyle(error).visibility,
+            'hidden',
+            'error is not visibility:hidden');
         done();
       }, 1);
     });
-
   });
 </script>
 
