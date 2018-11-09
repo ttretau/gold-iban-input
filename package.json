@@ -5,6 +5,11 @@
     "webcomponents",
     "iban"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ttretau/gold-iban-input.git"
+  },
+  "homepage": "https://github.com/ttretau/gold-iban-input",
   "name": "gold-iban-input",
   "main": "gold-iban-input.js",
   "version": "3.0.0",
